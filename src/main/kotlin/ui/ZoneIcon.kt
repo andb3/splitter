@@ -2,25 +2,21 @@ package ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.LocalContentColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import data.Zone
-import data.percentSize
+
 
 @Composable
 fun ZoneIcon(

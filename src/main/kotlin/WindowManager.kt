@@ -1,10 +1,11 @@
 import androidx.compose.ui.geometry.Rect
-import native.WindowAPI
-import native.withAPI
+import native.window.WindowAPI
+import native.window.withAPI
+import state.Action
 
 class WindowManager {
     private val windowAPI = WindowAPI()
-    fun handleAction(action: Action) {
+    fun handleAction(action: Action.MoveWindow) {
         when(action) {
             is Action.MoveWindow.Vertical -> moveVertically(action.startPercent, action.endPercent)
             is Action.MoveWindow.Horizontal -> moveHorizontally(action.startPercent, action.endPercent)
@@ -30,14 +31,6 @@ class WindowManager {
     }
 }
 
-sealed class Action {
-    sealed class MoveWindow : Action() {
-        abstract val startPercent: Float
-        abstract val endPercent: Float
-        data class Vertical(override val startPercent: Float, override val endPercent: Float) : MoveWindow()
-        data class Horizontal(override val startPercent: Float, override val endPercent: Float) : MoveWindow()
-    }
-}
 
 fun Rect.verticalPercent(percent: Float): Float = top + (height * percent)
 fun Rect.horizontalPercent(percent: Float): Float = left + (width * percent)

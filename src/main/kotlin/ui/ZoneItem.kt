@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import data.Zone
+import data.readableName
 
 @Composable
 fun ZoneItem(
@@ -28,10 +29,10 @@ fun ZoneItem(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             ZoneIcon(zone)
-            Text(zone.name, style = MaterialTheme.typography.subtitle1)
+            Text(zone.readableName(), style = MaterialTheme.typography.subtitle1)
         }
-        KeyShortcutItem(
-            shortcut = zone.shortcut,
+        HotkeyItem(
+            hotkey = zone.hotkey,
             modifier = Modifier.clickable(onClick = onClick)
         )
     }

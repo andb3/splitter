@@ -2,6 +2,9 @@ package data
 
 import androidx.compose.ui.input.key.Key
 
+/**
+ * Represents a key combination which should be pressed on a keyboard to trigger some action.
+ */
 class KeyShortcut(
     /**
      * Key that should be pressed to trigger an action

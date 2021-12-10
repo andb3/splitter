@@ -1,12 +1,8 @@
-package native
+package native.window
 
 import com.sun.jna.Library
 import com.sun.jna.platform.win32.WinDef
-import com.sun.jna.platform.win32.WinDef.*
-import com.sun.jna.platform.win32.WinNT
 import com.sun.jna.platform.win32.WinUser
-
-
 
 internal interface WindowNativeAPI : Library {
     fun GetForegroundWindow(): WinDef.HWND

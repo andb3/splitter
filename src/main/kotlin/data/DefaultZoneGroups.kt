@@ -2,158 +2,119 @@ package data
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.input.key.Key
+import randomID
 
 @OptIn(ExperimentalComposeUiApi::class)
-val verticalGroups = listOf(
-    ZoneGroup.Vertical(
-        name = "Full",
-        zones = listOf(
-            Zone.Vertical(
-                name = "Full Height",
-                startPercent = 0f,
-                endPercent = 1f,
-                shortcut = KeyShortcut(
-                    key = Key.V,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            )
-        )
-    ),
-    ZoneGroup.Vertical(
-        name = "Halves",
-        zones = listOf(
-            Zone.Vertical(
-                name = "Top Half",
-                startPercent = 0f,
-                endPercent = 0.5f,
-                shortcut = KeyShortcut(
-                    key = Key.DirectionUp,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
+val verticalGroups: List<ZoneGroup.Vertical> = listOf(
+    verticalGroup("Full", emptyList())
+        .withVerticalInformation(
+            sectionInfo = listOf("Full height" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.T)),
+            zoneInfo = emptyList()
+        ),
+    verticalGroup("Halves", listOf(Divider(randomID(), .5f)))
+        .withVerticalInformation(
+            sectionInfo = listOf(
+                "Top half" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.G),
+                "Bottom half" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.B)
             ),
-            Zone.Vertical(
-                name = "Bottom Half",
-                startPercent = 0.5f,
-                endPercent = 1f,
-                shortcut = KeyShortcut(
-                    key = Key.DirectionDown,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-        )
-    ),
+            zoneInfo = emptyList()
+        ),
 )
 
 @OptIn(ExperimentalComposeUiApi::class)
-val horizontalGroups = listOf(
-    ZoneGroup.Horizontal(
-        name = "Full",
-        zones = listOf(
-            Zone.Horizontal(
-                name = "Full Width",
-                startPercent = 0f,
-                endPercent = 1f,
-                shortcut = KeyShortcut(
-                    key = Key.H,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
+val horizontalGroups: List<ZoneGroup.Horizontal> = listOf(
+    horizontalGroup("Full", emptyList())
+        .withHorizontalInformation(
+            sectionInfo = listOf("Full width" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.H)),
+            zoneInfo = emptyList()
+        ),
+    horizontalGroup("Halves", listOf(Divider(randomID(), .5f)))
+        .withHorizontalInformation(
+            sectionInfo = listOf(
+                "Left half" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.DirectionLeft),
+                "Right half" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.DirectionRight),
+            ),
+            zoneInfo = emptyList()
+        ),
+    horizontalGroup("Thirds", listOf(Divider(randomID(), 1f / 3), Divider(randomID(), 2f / 3)))
+        .withHorizontalInformation(
+            sectionInfo = listOf(
+                "Left third" to Hotkey.Unset,
+                "Center third" to Hotkey.Unset,
+                "Right third" to Hotkey.Unset,
+            ),
+            zoneInfo = listOf(
+                ZoneName.Custom("Left two thirds") to Hotkey.Unset,
+                ZoneName.Custom("Right two thirds") to Hotkey.Unset
             )
-        )
-    ),
-    ZoneGroup.Horizontal(
-        name = "Halves",
-        zones = listOf(
-            Zone.Horizontal(
-                name = "Left Half",
-                startPercent = 0f,
-                endPercent = 0.5f,
-                shortcut = KeyShortcut(
-                    key = Key.DirectionLeft,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
+        ),
+    horizontalGroup("Priority", listOf(Divider(randomID(), 1f / 4), Divider(randomID(), 3f / 4)))
+        .withHorizontalInformation(
+            sectionInfo = listOf(
+                "Left" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.A),
+                "Priority" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.S),
+                "Right" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.D),
             ),
-            Zone.Horizontal(
-                name = "Right Half",
-                startPercent = 0.5f,
-                endPercent = 1f,
-                shortcut = KeyShortcut(
-                    key = Key.DirectionRight,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-        )
-    ),
-
-    ZoneGroup.Horizontal(
-        name = "Thirds",
-        zones = listOf(
-            Zone.Horizontal(
-                name = "Left Third",
-                startPercent = 0f,
-                endPercent = 1f/3,
-                shortcut = KeyShortcut(
-                    key = Key.A,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-            Zone.Horizontal(
-                name = "Center Third",
-                startPercent = 1f/3,
-                endPercent = 2f/3,
-                shortcut = KeyShortcut(
-                    key = Key.S,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-            Zone.Horizontal(
-                name = "Right Third",
-                startPercent = 2f/3,
-                endPercent = 1f,
-                shortcut = KeyShortcut(
-                    key = Key.D,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-            Zone.Horizontal(
-                name = "Left Two Thirds",
-                startPercent = 0f,
-                endPercent = 2f/3,
-                shortcut = KeyShortcut(
-                    key = Key.Z,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-            Zone.Horizontal(
-                name = "Right Two Thirds",
-                startPercent = 1f/3,
-                endPercent = 1f,
-                shortcut = KeyShortcut(
-                    key = Key.X,
-                    ctrl = true,
-                    meta = true,
-                    shift = true
-                )
-            ),
-        )
-    ),
+            zoneInfo = listOf(
+                ZoneName.Default to Hotkey.Shortcut(HotkeyModifiers.Default, Key.Z),
+                ZoneName.Default to Hotkey.Shortcut(HotkeyModifiers.Default, Key.C)
+            )
+        ),
 )
+
+private fun verticalGroup(
+    name: String,
+    dividers: List<Divider>
+): ZoneGroup.Vertical {
+    val sections = dividers.toVerticalSections(emptyList())
+    return ZoneGroup.Vertical(
+        name = name,
+        dividers = dividers,
+        sections = sections,
+        zones = sections.toZones(emptyList()),
+    )
+}
+
+private fun horizontalGroup(
+    name: String,
+    dividers: List<Divider>
+): ZoneGroup.Horizontal {
+    val sections = dividers.toHorizontalSections(emptyList())
+    return ZoneGroup.Horizontal(
+        name = name,
+        dividers = dividers,
+        sections = sections,
+        zones = sections.toZones(emptyList()),
+    )
+}
+
+private fun ZoneGroup.withHorizontalInformation(
+    sectionInfo: List<Pair<String, Hotkey>>,
+    zoneInfo: List<Pair<ZoneName, Hotkey>>,
+): ZoneGroup.Horizontal = withInformation(sectionInfo, zoneInfo) as ZoneGroup.Horizontal
+
+private fun ZoneGroup.withVerticalInformation(
+    sectionInfo: List<Pair<String, Hotkey>>,
+    zoneInfo: List<Pair<ZoneName, Hotkey>>,
+): ZoneGroup.Vertical = withInformation(sectionInfo, zoneInfo) as ZoneGroup.Vertical
+
+private fun ZoneGroup.withInformation(
+    sectionInfo: List<Pair<String, Hotkey>>,
+    zoneInfo: List<Pair<ZoneName, Hotkey>>,
+): ZoneGroup {
+    val sectionNames = sectionInfo.map { it.first }
+    val sectionHotkeys = sectionInfo.map { it.second }
+    val withSectionsFilled = this
+        .withSections(
+            this.sections
+                .zip(sectionNames)
+                .map { (section, name) -> section.withName(name) }
+        )
+    val filledSectionZones = withSectionsFilled.zones.filterIsInstance<Zone.Section>()
+        .zip(sectionHotkeys)
+        .map { (zone, hotkey) -> zone.withHotkey(hotkey) }
+    val filledCombinationZones = withSectionsFilled.zones.filterIsInstance<Zone.Combination>()
+        .zip(zoneInfo)
+        .map { (zone, info) -> zone.withName(info.first).withHotkey(info.second) }
+    return withSectionsFilled.withZones(filledSectionZones + filledCombinationZones)
+}
