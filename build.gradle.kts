@@ -20,6 +20,7 @@ dependencies {
     implementation("net.java.dev.jna:jna-platform:5.9.0")
     implementation("com.github.melloware:jintellitype:1.4.0")
     implementation(compose.desktop.currentOs)
+    implementation(compose.materialIconsExtended)
 }
 
 compose.desktop {

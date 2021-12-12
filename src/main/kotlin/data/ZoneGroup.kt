@@ -1,7 +1,7 @@
 package data
 
 import state.Action
-import state.EditAction
+import state.EditGroupAction
 
 sealed class ZoneGroup {
     abstract val name: String
@@ -47,23 +47,23 @@ sealed class ZoneGroup {
     }
 }
 
-fun ZoneGroup.applyAction(action: EditAction): ZoneGroup = when (action) {
-    is EditAction.UpdateName -> this.withName(name = action.name)
-    is EditAction.Divider.AddDivider -> this.withDividers(this.dividers + action.divider)
-    is EditAction.Divider.UpdateDivider -> this.withDividers(
+fun ZoneGroup.applyAction(action: EditGroupAction): ZoneGroup = when (action) {
+    is EditGroupAction.UpdateName -> this.withName(name = action.name)
+    is EditGroupAction.Divider.AddDivider -> this.withDividers(this.dividers + action.divider)
+    is EditGroupAction.Divider.UpdateDivider -> this.withDividers(
         newDividers = this.dividers.map { if (it.id == action.divider.id) action.divider else it }
     )
-    is EditAction.Divider.RemoveDivider -> this.withDividers(this.dividers.filter { it.id != action.divider.id })
-    is EditAction.Section.UpdateName -> this.withSections(
+    is EditGroupAction.Divider.RemoveDivider -> this.withDividers(this.dividers.filter { it.id != action.divider.id })
+    is EditGroupAction.Section.UpdateName -> this.withSections(
         newSections = this.sections.map { if (it.id == action.section.id) it.withName(action.name) else it }
     )
-    is EditAction.Zone.Combination.UpdateName -> this.withZones(
+    is EditGroupAction.Zone.Combination.UpdateName -> this.withZones(
         newZones = this.zones.map { if (it is Zone.Combination && it.id == action.zone.id) it.withName(action.name) else it }
     )
-    is EditAction.Zone.UpdateHotkey -> this.withZones(
+    is EditGroupAction.Zone.UpdateHotkey -> this.withZones(
         newZones = this.zones.map { if (it.id == action.zone.id) it.withHotkey(action.hotkey) else it }
     )
-    is EditAction.Zone.UpdateVisibility -> this.withZones(
+    is EditGroupAction.Zone.UpdateVisibility -> this.withZones(
         newZones = this.zones.map { if (it.id == action.zone.id) it.withVisibility(action.visibility) else it }
     )
 }

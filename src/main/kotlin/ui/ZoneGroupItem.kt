@@ -12,22 +12,25 @@ import androidx.compose.ui.unit.dp
 import data.ZoneGroup
 import data.moveAction
 import state.Action
+import state.EditGroupAction
 
 @Composable
 fun ZoneGroupItem(
     group: ZoneGroup,
     modifier: Modifier = Modifier,
-    onZoneClick: (Action.MoveWindow) -> Unit,
+    onAction: (Action) -> Unit,
 ) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Text(group.name, style = MaterialTheme.typography.subtitle1, color = LocalContentColor.current.copy(alpha = ContentAlpha.medium))
-        group.zones.forEach {
-            ZoneItem(it) {
-                onZoneClick.invoke(it.moveAction())
-            }
+        group.zones.forEach { zone ->
+            ZoneItem(
+                zone = zone,
+                onMove = { onAction.invoke(zone.moveAction()) },
+                onUpdateHotkey = { onAction.invoke(EditGroupAction.Zone.UpdateHotkey(group, zone, it)) }
+            )
         }
     }
 }

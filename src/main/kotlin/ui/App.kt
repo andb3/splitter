@@ -1,6 +1,5 @@
 package ui
 
-import WindowManager
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,13 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import data.DefaultModifiers
 import data.ZoneGroup
-import data.horizontalGroups
-import data.verticalGroups
-import state.EditAction
+import state.Action
 
 @Composable
-fun App(zoneGroups: List<ZoneGroup>, onEditAction: (EditAction) -> Unit) {
-    val windowManager = remember { WindowManager() }
+fun App(zoneGroups: List<ZoneGroup>, onAction: (Action) -> Unit) {
     MaterialTheme {
         CompositionLocalProvider(LocalDefaultModifier provides DefaultModifiers.modifiers) {
             Column(
@@ -33,15 +29,17 @@ fun App(zoneGroups: List<ZoneGroup>, onEditAction: (EditAction) -> Unit) {
                     .padding(32.dp),
                 verticalArrangement = Arrangement.spacedBy(64.dp)
             ) {
-                Text("Vertical", style = MaterialTheme.typography.h4)
-                zoneGroups.filter { it is ZoneGroup.Vertical }.forEach {
-                    ZoneGroupItem(it) { windowManager.handleAction(it) }
-                }
-                Text("Horizontal", style = MaterialTheme.typography.h4)
-                zoneGroups.filter { it is ZoneGroup.Horizontal }.forEach {
-                    ZoneGroupItem(it) { windowManager.handleAction(it) }
-                }
+                Category("Vertical", zoneGroups.filter { it is ZoneGroup.Vertical }, onAction)
+                Category("Horizontal", zoneGroups.filter { it is ZoneGroup.Horizontal }, onAction)
             }
         }
+    }
+}
+
+@Composable
+fun Category(name: String, zoneGroups: List<ZoneGroup>, onAction: (Action) -> Unit){
+    Text(name, style = MaterialTheme.typography.h4)
+    zoneGroups.forEach {
+        ZoneGroupItem(it, onAction = onAction)
     }
 }

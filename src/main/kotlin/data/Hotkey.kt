@@ -5,7 +5,6 @@ import androidx.compose.ui.input.key.KeyShortcut
 
 sealed class Hotkey {
     object Unset : Hotkey()
-    object Recording : Hotkey()
     data class Shortcut(val modifiers: HotkeyModifiers, val key: Key) : Hotkey()
 }
 
