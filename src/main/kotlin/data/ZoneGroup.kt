@@ -212,7 +212,7 @@ sealed class Zone {
     sealed class Combination : Zone() {
         abstract val sections: List<data.Section>
         override val startDivider get() = sections.minByOrNull { it.startDivider.percent }!!.startDivider
-        override val endDivider get() = sections.minByOrNull { it.endDivider.percent }!!.endDivider
+        override val endDivider get() = sections.maxByOrNull { it.endDivider.percent }!!.endDivider
         override val startPercent get() = sections.minOf { it.startDivider.percent }
         override val endPercent get() = sections.maxOf { it.endDivider.percent }
 

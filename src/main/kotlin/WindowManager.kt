@@ -18,7 +18,12 @@ class WindowManager {
 
         val newLeft = currentMonitorBounds.horizontalPercent(startPercent)
         val newWidth = currentMonitorBounds.horizontalPercent(endPercent) - newLeft
-        currentWindow.move(x = newLeft.toInt(), y = currentWindowBounds.top.toInt(), width = newWidth.toInt(), height = currentWindowBounds.height.toInt())
+        currentWindow.move(
+            x = newLeft.toInt(),
+            y = currentWindowBounds.top.toInt(),
+            width = newWidth.toInt(),
+            height = currentWindowBounds.height.toInt()
+        )
     }
     private fun moveVertically(startPercent: Float, endPercent: Float) = withAPI(windowAPI) {
         val currentWindow = getForegroundWindow()
@@ -27,7 +32,12 @@ class WindowManager {
 
         val newTop = currentMonitorBounds.verticalPercent(startPercent)
         val newHeight = currentMonitorBounds.verticalPercent(endPercent) - newTop
-        currentWindow.move(x = currentWindowBounds.left.toInt(), y = newTop.toInt(), width = currentWindowBounds.width.toInt(), height = newHeight.toInt())
+        currentWindow.move(
+            x = currentWindowBounds.left.toInt(),
+            y = newTop.toInt(),
+            width = currentWindowBounds.width.toInt(),
+            height = newHeight.toInt()
+        )
     }
 }
 

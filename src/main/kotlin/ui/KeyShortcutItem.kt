@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -72,6 +73,7 @@ private fun ShortcutItem(
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun CustomHotkeyModifiersItem(
     customHotkeyModifiers: HotkeyModifiers.Custom,
@@ -106,9 +108,9 @@ private fun CustomHotkeyModifiersItem(
         }
         Text(text = "+", color = LocalContentColor.current.copy(alpha = ContentAlpha.medium))
     }
-
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun DefaultHotkeyModifiersItem(modifier: Modifier = Modifier, onEdit: (HotkeyModifiers) -> Unit) {
     val isHovering = remember { mutableStateOf(false) }
@@ -133,7 +135,6 @@ private fun DefaultHotkeyModifiersItem(modifier: Modifier = Modifier, onEdit: (H
             color = LocalContentColor.current.copy(alpha = ContentAlpha.medium),
         )
     }
-
 }
 
 @Composable
