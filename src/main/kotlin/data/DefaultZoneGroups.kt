@@ -19,6 +19,18 @@ val verticalGroups: List<ZoneGroup.Vertical> = listOf(
             ),
             zoneInfo = emptyList()
         ),
+    verticalGroup("Video", listOf(Divider(randomID(), 0.65425f), Divider(randomID(), .6925f)))
+        .withVerticalInformation(
+            sectionInfo = listOf(
+                "N/A" to Hotkey.Unset,
+                "N/A" to Hotkey.Unset,
+                "21:9" to Hotkey.Shortcut(HotkeyModifiers.Default, Key.Two)
+            ),
+            zoneInfo = listOf(
+                ZoneName.Default to Hotkey.Unset,
+                ZoneName.Custom("16:9") to Hotkey.Shortcut(HotkeyModifiers.Default, Key.One)
+            )
+        )
 )
 
 @OptIn(ExperimentalComposeUiApi::class)

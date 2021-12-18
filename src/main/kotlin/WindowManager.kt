@@ -6,11 +6,12 @@ import state.Action
 class WindowManager {
     private val windowAPI = WindowAPI()
     fun handleAction(action: Action.MoveWindow) {
-        when(action) {
+        when (action) {
             is Action.MoveWindow.Vertical -> moveVertically(action.startPercent, action.endPercent)
             is Action.MoveWindow.Horizontal -> moveHorizontally(action.startPercent, action.endPercent)
         }
     }
+
     private fun moveHorizontally(startPercent: Float, endPercent: Float) = withAPI(windowAPI) {
         val currentWindow = getForegroundWindow()
         val currentWindowBounds = currentWindow.getBounds()
@@ -25,6 +26,7 @@ class WindowManager {
             height = currentWindowBounds.height.toInt()
         )
     }
+
     private fun moveVertically(startPercent: Float, endPercent: Float) = withAPI(windowAPI) {
         val currentWindow = getForegroundWindow()
         val currentWindowBounds = currentWindow.getBounds()
